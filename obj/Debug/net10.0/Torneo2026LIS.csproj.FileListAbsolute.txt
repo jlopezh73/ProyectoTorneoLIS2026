@@ -5859,4 +5859,5 @@
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/9byfqzvsai-{0}-cm5j2x4qo1-cm5j2x4qo1.gz
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/npe7vrucxp-{0}-2x468bbbhv-2x468bbbhv.gz
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/klgzsrap9t-{0}-jmwkj0j880-jmwkj0j880.gz
-/Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/z5vt7ix1q1-{0}-huhpdtalxe-huhpdtalxe.gz
+/Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/Torneo2026LIS.sourcelink.json
+/Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/z5vt7ix1q1-{0}-n9yrn8sa1h-n9yrn8sa1h.gz

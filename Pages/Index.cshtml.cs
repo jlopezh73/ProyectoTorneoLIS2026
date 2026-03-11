@@ -24,31 +24,47 @@ public class IndexModel : PageModel
 
     private void cargarEquipos()
     {
-        equipos = new List<Equipo>()
+        var cadJson = HttpContext.Session.GetString("equipos");
+        if (cadJson == null)
         {
-            new Equipo() {Id=1,
-                          Nombre="Club América",
-                          Representante="Pedro Sánchez",
-                          Telefono="5523896712"},
-            new Equipo() {Id=2,
-                          Nombre="Club Chivas del Guadalajara",
-                          Representante="Martha Higareda",
-                          Telefono="7823490876"},
-            new Equipo() {Id=3,
-                          Nombre="Club Cruz Azul",
-                          Representante="Martín Porras",
-                          Telefono="5500996212"},
-            new Equipo() {Id=4,
-                          Nombre="Club Pumas",
-                          Representante="Hugo Sánchez",
-                          Telefono="5578289312"},
-        };
+            equipos = new List<Equipo>()
+            {
+                new Equipo() {Id=1,
+                            Nombre="Club América",
+                            Representante="Pedro Sánchez",
+                            Telefono="5523896712"},
+                new Equipo() {Id=2,
+                            Nombre="Club Chivas del Guadalajara",
+                            Representante="Martha Higareda",
+                            Telefono="7823490876"},
+                new Equipo() {Id=3,
+                            Nombre="Club Cruz Azul",
+                            Representante="Martín Porras",
+                            Telefono="5500996212"},
+                new Equipo() {Id=4,
+                            Nombre="Club Pumas",
+                            Representante="Hugo Sánchez",
+                            Telefono="5578289312"},
+            };
+
+            guardarEquiposSesion();
+        } else
+        {
+            equipos = System.Text.Json.JsonSerializer.Deserialize<List<Equipo>>(cadJson);
+        }
     }
 
     private void agregarEquipo()
     {
         equipo.Id = equipos.Max(e => e.Id) + 1;
         equipos.Add(equipo);
+        guardarEquiposSesion();
+    }
+
+    private void guardarEquiposSesion()
+    {
+        String cadJson = System.Text.Json.JsonSerializer.Serialize<List<Equipo>>(equipos);
+        HttpContext.Session.SetString("equipos", cadJson);
     }
 
     private void eliminarEquipo()

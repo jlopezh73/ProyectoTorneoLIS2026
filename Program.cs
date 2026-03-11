@@ -3,6 +3,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+//Se configura Acceso a variables de sesión en la aplicación a ser creada
+builder.Services.AddSession();
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,8 +23,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
-
+app.UseSession();
 app.Run();

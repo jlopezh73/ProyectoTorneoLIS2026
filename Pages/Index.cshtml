@@ -50,14 +50,14 @@
             <div class="modal-body">
                 <form method="post" id="formaEquipo">
                     <div class="row mb-3">
-                        <label for="idGrupo" class="col-sm-3 col-form-label">ID del equipo</label>
-                        <div class="mb-3 col-sm-3">
-                            <input type="text" class="form-control" id="idGrupo" asp-for="@Model.equipo.Id" disabled>                        
+                        <label for="idGrupo" class="col-xs-3 col-md-3 col-form-label">ID del equipo</label>
+                        <div class="mb-3 col-xs-3 col-md-3">
+                            <input type="text" class="form-control" id="idEquipo" asp-for="@Model.equipo.Id" disabled>                        
                         </div>                        
                     </div>
                     <div class="row mb-3">
-                        <label for="nombre" class="col-sm-3 col-form-label">Nombre del equipo</label>
-                        <div class="col-sm-9">
+                        <label for="nombre" class="col-sm-3 col-md-3 col-form-label">Nombre del equipo</label>
+                        <div class="col-sm-9 col-md-9">
                             <div class="input-group mb-3">                        
                                 <span class="input-group-text"><i class="fa-solid fa-users-line"></i></span>
                                 <input type="text" class="form-control" id="nombre" placeholder="Teclear el nombre del equipo" asp-for="@Model.equipo.Nombre">
