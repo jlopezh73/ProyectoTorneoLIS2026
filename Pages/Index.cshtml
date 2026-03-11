@@ -1,0 +1,105 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Registro de equipos";
+}
+
+<div class="text-center">
+    <h3>Registro de Equipos del Torneo</h3>
+    <p>Lista de los equipos registrados</p>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"># Registro</th>
+      <th scope="col">Logo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Representante</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(Equipo equipo in Model.equipos) {
+        <tr>
+            <th scope="row">@equipo.Id</th>
+            <td><img src="/logos/@(equipo.Id).jpg" height="50" /></td>
+            <td>@equipo.Nombre</td>
+            <td>@equipo.Representante</td>
+            <td>@equipo.Telefono</td>
+            <td>
+                <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
+                <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>
+    }
+  </tbody>
+</table>
+<button id="btnAgregar" class="btn btn-secondary" ><i class="fa-solid fa-plus"></i>Agregar Equipo</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="dialogoEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registro / Edición de Equipos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formaEquipo">
+                    <div class="row mb-3">
+                        <label for="idGrupo" class="col-sm-3 col-form-label">ID del equipo</label>
+                        <div class="mb-3 col-sm-3">
+                            <input type="text" class="form-control" id="idGrupo" asp-for="@Model.equipo.Id" disabled>                        
+                        </div>                        
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nombre" class="col-sm-3 col-form-label">Nombre del equipo</label>
+                        <div class="col-sm-9">
+                            <div class="input-group mb-3">                        
+                                <span class="input-group-text"><i class="fa-solid fa-users-line"></i></span>
+                                <input type="text" class="form-control" id="nombre" placeholder="Teclear el nombre del equipo" asp-for="@Model.equipo.Nombre">
+                            </div>
+                            <span class="text-danger" asp-validation-for="@Model.equipo.Nombre"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nombre" class="col-sm-3 col-form-label">Representante</label>
+                        <div class="col-sm-9">
+                            <div class="input-group mb-3">                        
+                                <span class="input-group-text"><i class="fa-solid fa-circle-user"></i></span>
+                                <input type="text" class="form-control" id="representante"
+                                    placeholder="Teclear el nombre del representante del equipo" asp-for="@Model.equipo.Representante">
+                            </div>
+                            <span class="text-danger" asp-validation-for="@Model.equipo.Representante"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nombre" class="col-sm-3 col-form-label">Teléfono de Contacto</label>
+                        <div class="col-sm-5">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                <input type="text" class="form-control" id="telefono" placeholder="Teclear el teléfono"
+                                    asp-for="@Model.equipo.Telefono">
+                            </div>
+                            <span class="text-danger" asp-validation-for="@Model.equipo.Telefono"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guardar">Guardar Información</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="/js/equipos.js"></script>
+}

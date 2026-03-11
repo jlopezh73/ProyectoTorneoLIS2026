@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Torneo2026LIS/1.0.0": {
+        "runtime": {
+          "Torneo2026LIS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Torneo2026LIS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
