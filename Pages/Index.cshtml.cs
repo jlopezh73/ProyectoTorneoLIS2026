@@ -14,13 +14,24 @@ public class IndexModel : PageModel
     {
         cargarEquipos();
         equipo = new Equipo();
+
+    }
+    
+    public ActionResult OnGetEquipo(int id)
+    {
+        cargarEquipos();
+        return new JsonResult(equipos.Where(e => e.Id == id).FirstOrDefault());
     }
 
     public void OnPost()
     {
         cargarEquipos();
-        agregarEquipo();
+        if (equipo.Id == 0)
+            agregarEquipo();
+        else
+            modificarEquipo();
     }
+    
 
     private void cargarEquipos()
     {
@@ -58,7 +69,7 @@ public class IndexModel : PageModel
     {
         equipo.Id = equipos.Max(e => e.Id) + 1;
         equipos.Add(equipo);
-        guardarEquiposSesion();
+        //guardarEquiposSesion();
     }
 
     private void guardarEquiposSesion()
@@ -71,6 +82,7 @@ public class IndexModel : PageModel
     {
         var equipoEli = equipos.First(e => e.Id == equipo.Id);
         equipos.Remove(equipoEli);
+        guardarEquiposSesion();
     }
 
     private void modificarEquipo()
@@ -80,5 +92,6 @@ public class IndexModel : PageModel
         equipoModi.Nombre = equipo.Nombre;
         equipoModi.Representante = equipo.Representante;
         equipoModi.Telefono = equipo.Telefono;
+        guardarEquiposSesion();
     }
 }

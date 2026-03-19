@@ -4,7 +4,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 //Se configura Acceso a variables de sesión en la aplicación a ser creada
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "MySessionCookie";
+});
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
