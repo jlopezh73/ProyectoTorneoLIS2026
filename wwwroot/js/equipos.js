@@ -1,11 +1,12 @@
 $(document).ready(function() {
     $("#btnAgregar").on("click", agregarEquipo);
+    $("#btnEliminar").on("click", eliminarEquipo);
     $("#guardar").on("click", guardarEquipo);
 });
 
 
 function agregarEquipo() {
-    $("#idEquipo").val("");
+    $("#idEquipo").val("0");
     $("#nombre").val("");
     $("#representante").val("");
     $("#telefono").val("");
@@ -34,4 +35,9 @@ function guardarEquipo() {
         $("#idEquipo").prop("disabled",false);    
         $("#formaEquipo").submit();       
     } 
+}
+
+function mostrarDialogoEliminar(nombreEquipo) {
+    $("#nombreEquipoEliminar").html(nombreEquipo);
+    $("#dialogoEliminar").modal("show");
 }

@@ -13,8 +13,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         cargarEquipos();
-        equipo = new Equipo();
-
+        equipo = new Equipo();        
     }
     
     public ActionResult OnGetEquipo(int id)

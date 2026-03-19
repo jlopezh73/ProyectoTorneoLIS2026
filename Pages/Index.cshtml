@@ -30,7 +30,7 @@
             <td>@equipo.Telefono</td>
             <td>
                 <button type="button" class="btn btn-sm btn-primary" onclick="editarEquipo(@equipo.Id);"><i class="fa-solid fa-pencil"></i></button>
-                <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-sm btn-danger" onclick="mostrarDialogoEliminar('@equipo.Nombre')"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>
     }
@@ -92,6 +92,25 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" id="guardar">Guardar Información</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="dialogoEliminar" tabindex="-1" aria-labelledby="dialogoEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Equipo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>¿Está seguro de querer eliminar el equipo <strong id="nombreEquipoEliminar"></strong>?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="btnEliminarEquipo">Eliminar Equipo</button>
             </div>
         </div>
     </div>
