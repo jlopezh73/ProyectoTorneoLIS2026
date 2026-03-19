@@ -37,7 +37,9 @@ function guardarEquipo() {
     } 
 }
 
-function mostrarDialogoEliminar(nombreEquipo) {
+let idEquipoEliminar;
+function mostrarDialogoEliminar(idEquipo, nombreEquipo) {
     $("#nombreEquipoEliminar").html(nombreEquipo);
+    idEquipoEliminar = idEquipo;
     $("#dialogoEliminar").modal("show");
 }
