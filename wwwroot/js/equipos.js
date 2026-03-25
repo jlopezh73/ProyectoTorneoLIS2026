@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#btnAgregar").on("click", agregarEquipo);
-    $("#btnEliminar").on("click", eliminarEquipo);
+    $("#btnEliminarEquipo").on("click", eliminarEquipo);
     $("#guardar").on("click", guardarEquipo);
 });
 
@@ -42,4 +42,15 @@ function mostrarDialogoEliminar(idEquipo, nombreEquipo) {
     $("#nombreEquipoEliminar").html(nombreEquipo);
     idEquipoEliminar = idEquipo;
     $("#dialogoEliminar").modal("show");
+}
+
+function eliminarEquipo() {
+    $.ajax({
+        url: "/Index?handler=Eliminar&id="+idEquipoEliminar,
+        success: function(data) {            
+            alert("Equipo eliminado de forma satisfactoria");
+            document.location = "/Index";
+        }        
+    });
+    
 }

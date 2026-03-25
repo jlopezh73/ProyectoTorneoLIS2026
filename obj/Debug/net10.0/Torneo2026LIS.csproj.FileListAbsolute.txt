@@ -5860,4 +5860,4 @@
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/npe7vrucxp-{0}-2x468bbbhv-2x468bbbhv.gz
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/klgzsrap9t-{0}-jmwkj0j880-jmwkj0j880.gz
 /Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/Torneo2026LIS.sourcelink.json
-/Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/z5vt7ix1q1-{0}-0x8uqbxabo-0x8uqbxabo.gz
+/Users/x/ProyectosFEI/Torneo2026LIS/obj/Debug/net10.0/compressed/z5vt7ix1q1-{0}-c6ejazu44r-c6ejazu44r.gz

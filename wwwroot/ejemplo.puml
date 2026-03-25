@@ -1,0 +1,26 @@
+@startuml
+ 
+' Título del diagrama
+title Nombre del Diagrama
+ 
+' Configuración visual (opcional pero recomendada)
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor LightBlue
+  BorderColor DarkBlue
+}
+ 
+' Definición de actores
+actor "Nombre del Actor" as alias
+ 
+' Definición del sistema
+rectangle "Nombre del Sistema" {
+  usecase "Caso de Uso 1" as UC1
+  usecase "Caso de Uso 2" as UC2
+}
+ 
+' Relaciones
+alias --> UC1 : descripción (opcional)
+UC1 .> UC2 : <<include>>
+ 
+@enduml

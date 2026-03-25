@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach(Equipo equipo in Model.equipos) {
+    @foreach(EquipoDto equipo in Model.equipos) {
         <tr>
             <th scope="row">@equipo.Id</th>
             <td><img src="/logos/@(equipo.Id).jpg" height="50" /></td>

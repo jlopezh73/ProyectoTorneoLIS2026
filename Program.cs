@@ -8,6 +8,15 @@ builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "MySessionCookie";
 });
+
+var equiposURI = builder.Configuration.GetSection("Services:Equipos").Value;
+System.Console.Error.WriteLine(equiposURI);
+builder.Services.AddHttpClient<IEquiposService, EquiposService>(client =>
+{    
+    client.BaseAddress = new Uri(equiposURI);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");    
+});
+
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();

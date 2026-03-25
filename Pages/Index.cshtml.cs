@@ -5,83 +5,61 @@ namespace Torneo2026LIS.Pages;
 
 public class IndexModel : PageModel
 {
-    public List<Equipo> equipos { get; set; }
+    public List<EquipoDto> equipos { get; set; }
 
     [BindProperty]
-    public Equipo equipo { get; set; }
+    public EquipoDto equipo { get; set; }
 
     public void OnGet()
     {
         cargarEquipos();
-        equipo = new Equipo();        
+        equipo = new EquipoDto();
     }
-    
+
     public ActionResult OnGetEquipo(int id)
     {
         cargarEquipos();
         return new JsonResult(equipos.Where(e => e.Id == id).FirstOrDefault());
     }
 
-    public void OnPost()
+    public ActionResult OnGetEliminar(int id)
     {
         cargarEquipos();
+        eliminarEquipo(id);
+        return new JsonResult(new { resultado = true });
+    }
+
+    public void OnPost()
+    {
         if (equipo.Id == 0)
             agregarEquipo();
         else
             modificarEquipo();
+
+        cargarEquipos();
     }
-    
+
 
     private void cargarEquipos()
     {
-        var cadJson = HttpContext.Session.GetString("equipos");
-        if (cadJson == null)
-        {
-            equipos = new List<Equipo>()
-            {
-                new Equipo() {Id=1,
-                            Nombre="Club América",
-                            Representante="Pedro Sánchez",
-                            Telefono="5523896712"},
-                new Equipo() {Id=2,
-                            Nombre="Club Chivas del Guadalajara",
-                            Representante="Martha Higareda",
-                            Telefono="7823490876"},
-                new Equipo() {Id=3,
-                            Nombre="Club Cruz Azul",
-                            Representante="Martín Porras",
-                            Telefono="5500996212"},
-                new Equipo() {Id=4,
-                            Nombre="Club Pumas",
-                            Representante="Hugo Sánchez",
-                            Telefono="5578289312"},
-            };
-
-            guardarEquiposSesion();
-        } else
-        {
-            equipos = System.Text.Json.JsonSerializer.Deserialize<List<Equipo>>(cadJson);
-        }
+        HttpClient httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("http://localhost:5261/api/equipos");
+        equipos = httpClient.GetFromJsonAsync<List<EquipoDto>>("").Result;
+        
     }
 
     private void agregarEquipo()
     {
-        equipo.Id = equipos.Max(e => e.Id) + 1;
-        equipos.Add(equipo);
-        //guardarEquiposSesion();
+        HttpClient httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("http://localhost:5261/api/equipos");
+        var resultado = httpClient.PostAsJsonAsync<EquipoDto>("", equipo).Result;
     }
 
-    private void guardarEquiposSesion()
+    
+    private void eliminarEquipo(int id)
     {
-        String cadJson = System.Text.Json.JsonSerializer.Serialize<List<Equipo>>(equipos);
-        HttpContext.Session.SetString("equipos", cadJson);
-    }
-
-    private void eliminarEquipo()
-    {
-        var equipoEli = equipos.First(e => e.Id == equipo.Id);
+        var equipoEli = equipos.First(e => e.Id == id);
         equipos.Remove(equipoEli);
-        guardarEquiposSesion();
     }
 
     private void modificarEquipo()
@@ -90,7 +68,14 @@ public class IndexModel : PageModel
         equipoModi.Id = equipo.Id;
         equipoModi.Nombre = equipo.Nombre;
         equipoModi.Representante = equipo.Representante;
-        equipoModi.Telefono = equipo.Telefono;
-        guardarEquiposSesion();
+        equipoModi.Telefono = equipo.Telefono;        
     }
 }
+
+/*
+    dotnet add package Microsoft.EntityFrameworkCore
+    dotnet add package Microsoft.EntityFrameworkCore.Design
+    dotnet add package Microsoft.EntityFrameworkCore.Tools
+    dotnet add package MySql.EntityFrameworkCore
+    dotnet tool install -g dotnet-ef
+*/
