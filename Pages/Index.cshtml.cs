@@ -9,6 +9,12 @@ public class IndexModel : PageModel
 
     [BindProperty]
     public EquipoDto equipo { get; set; }
+    private IEquiposService equiposService;
+
+    public IndexModel(IEquiposService _equiposService)
+    {
+        equiposService = _equiposService;
+    }
 
     public void OnGet()
     {
@@ -42,10 +48,15 @@ public class IndexModel : PageModel
 
     private void cargarEquipos()
     {
-        HttpClient httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("http://localhost:5261/api/equipos");
-        equipos = httpClient.GetFromJsonAsync<List<EquipoDto>>("").Result;
-        
+        try
+        {
+            /*HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("http://localhost:5261/api/equipos");
+            equipos = httpClient.GetFromJsonAsync<List<EquipoDto>>("").Result;*/
+            equipos = equiposService.ObtenerEquipos().Result;
+        } catch (Exception e) {
+            equipos = new List<EquipoDto>();
+        }
     }
 
     private void agregarEquipo()
@@ -64,11 +75,9 @@ public class IndexModel : PageModel
 
     private void modificarEquipo()
     {
-        var equipoModi = equipos.First(e => e.Id == equipo.Id);
-        equipoModi.Id = equipo.Id;
-        equipoModi.Nombre = equipo.Nombre;
-        equipoModi.Representante = equipo.Representante;
-        equipoModi.Telefono = equipo.Telefono;        
+        HttpClient httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("http://localhost:5261/api/equipos");
+        var resultado = httpClient.PutAsJsonAsync<EquipoDto>($"/", equipo).Result;
     }
 }
 

@@ -1,0 +1,49 @@
+
+services:
+  ui:
+    image: torneo_2026_ui:1.0
+    environment:
+      - SERVICES__EQUIPOS=http://172.16.0.3:8080/api/equipos
+    depends_on:
+      equipo_api: 
+        condition: service_started              
+    ports:
+      - "8000:8080"    
+    networks:
+      interna:
+        ipv4_address: 172.16.0.1
+      
+  equipo_api:
+    image: torneo_equipo_api:1.0
+    environment:
+      - CONNECTIONSTRINGS__EQUIPOSCONNECTION=server=172.16.0.10;database=torneo;user id=torneo;password=123456
+    depends_on:
+      mysql90:
+        condition: service_started                
+    networks:
+      interna:
+        ipv4_address: 172.16.0.3    
+
+  mysql90:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - mysql_local_volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    networks:
+      interna:
+        ipv4_address: 172.16.0.10  
+volumes:  
+  mysql_local_volume:  
+networks:
+  interna: 
+    ipam:       
+      config:
+        - subnet:  172.16.0.0/16
+          gateway: 172.16.0.254
+          
+        

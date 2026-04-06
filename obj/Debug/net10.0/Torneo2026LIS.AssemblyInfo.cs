@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Torneo2026LIS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bf67479ba620f39dc342a12fdf95619d715278e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00a2562d8e05670c74fc9d852137989de5366e6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Torneo2026LIS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Torneo2026LIS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
