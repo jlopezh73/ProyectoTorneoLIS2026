@@ -1,3 +1,5 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,14 @@ builder.Services.AddHttpClient<IEquiposService, EquiposService>(client =>
     client.BaseAddress = new Uri(equiposURI);
     client.DefaultRequestHeaders.Add("Accept", "application/json");    
 });
+var IAMURI = builder.Configuration.GetSection("Services:IAM").Value;
+builder.Services.AddHttpClient<IIdentidadService, IdentidadService>(client =>
+{    
+    client.BaseAddress = new Uri(IAMURI);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");    
+});
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddMemoryCache();
 
