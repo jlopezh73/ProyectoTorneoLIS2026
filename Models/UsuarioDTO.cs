@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
     public class UsuarioDTO
     {
-        public int ID { get; set; }
+        public String ID { get; set; }
         [Required(ErrorMessage = "El Correo electrónico es obligatorio", AllowEmptyStrings = false)]
         [StringLength(100, ErrorMessage = "El nombre no puede exceder los 100 caracteres.")]    
         [Display(Name = "Correo electrónico", Prompt = "Correo de registro del usuario")]

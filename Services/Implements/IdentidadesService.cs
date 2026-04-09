@@ -38,6 +38,7 @@ public class IdentidadService : IIdentidadService
         {            
             var response = await _httpClient.PostAsJsonAsync<PeticionInicioSesionDTO>("validarUsuario",
                                                                                      peticionInicioSesion);
+            response.EnsureSuccessStatusCode();
             return response.Content.ReadFromJsonAsync<RespuestaValidacionUsuarioDTO>().Result??
                 new RespuestaValidacionUsuarioDTO() { correcto = false };
                         

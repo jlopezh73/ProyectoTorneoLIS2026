@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var usuario_token = Context.Request.HttpContext.Session.GetString("token_usuario");
+    //var usuario_token = "123";
+}
+@if (string.IsNullOrEmpty(usuario_token))
+{    
+    IgnoreBody();
+    @await RenderSectionAsync("Scripts", required: false)    
+    Context.Response.Redirect("/Login");    
+} else {
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -61,3 +72,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+}
